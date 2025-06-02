@@ -1,0 +1,10 @@
+services:
+  sentiment_analyzer_python:
+    build:
+      context: ./sentiment_analyzer_python
+
+    container_name: sentiment_analyzer_python
+    ports:
+      - "8000:8000"
+
+    restart: unless-stopped

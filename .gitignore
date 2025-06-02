@@ -6,3 +6,8 @@
 /csv_quotes_import/target
 /sentiment_analyzer_python/__pycache__
 quotes/quotes.csv
+quotes_processing/.env
+quotes_processing/.env
+/quotes_processing/.idea
+/quotes_processing/target
+quotes_processing/.env
