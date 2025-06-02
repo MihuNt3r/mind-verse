@@ -2,3 +2,7 @@
 /sentiment_analyzer/.models
 /sentiment_analyzer/target
 /sentiment_analyzer/.idea
+/csv_quotes_import/.idea
+/csv_quotes_import/target
+/sentiment_analyzer_python/__pycache__
+quotes/quotes.csv
