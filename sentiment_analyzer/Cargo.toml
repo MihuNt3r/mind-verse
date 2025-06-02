@@ -1,0 +1,8 @@
+[package]
+name = "sentiment_analyzer"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+rust-bert = "0.23.0"
+hf-hub = "0.4.2"

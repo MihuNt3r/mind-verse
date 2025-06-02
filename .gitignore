@@ -1,0 +1,4 @@
+# Ignore target directory
+/sentiment_analyzer/.models
+/sentiment_analyzer/target
+/sentiment_analyzer/.idea
