@@ -3,7 +3,7 @@ import { Otp } from '@core/entities/otp.entity';
 import { IOtpRepository } from '@core/repositories/otp.repository.interface';
 import { PrismaService } from '@infrastructure/database/prisma/prisma.service';
 import { ConfigService } from '@nestjs/config';
-import { Otp as PrismaOtp } from '@prisma/client';
+import { Otp as PrismaOtp } from '.prisma/client-default';
 import { BaseRepository } from './base.repository';
 import { UserId } from '@core/value-objects/user-id.vo';
 

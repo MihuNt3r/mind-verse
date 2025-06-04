@@ -7,7 +7,7 @@ import {
   Role as PrismaRole,
   RolePermission as PrismaRolePermission,
   Permission as PrismaPermission,
-} from '@prisma/client';
+} from '.prisma/client-default';
 import { ResourceAction, ActionType } from '@core/value-objects/resource-action.vo';
 import { BaseRepository } from './base.repository';
 

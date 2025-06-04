@@ -1,0 +1,25 @@
+generator client {
+  provider = "prisma-client-js"
+  output   = "../node_modules/.prisma/client-quotes"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("QUOTES_DATABASE_URL")
+}
+
+model csv_imported_quotes {
+  id          Int      @id @default(autoincrement())
+  quote       String
+  author      String?
+  category    String?
+  isprocessed Boolean?
+}
+
+model processed_quotes {
+  id             Int     @id @default(autoincrement())
+  quote          String
+  author         String?
+  category       String?
+  emotion_scores Json?
+}

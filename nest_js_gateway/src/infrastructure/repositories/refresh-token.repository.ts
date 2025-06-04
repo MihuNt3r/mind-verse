@@ -3,7 +3,7 @@ import { RefreshToken } from '@core/entities/refresh-token.entity';
 import { IRefreshTokenRepository } from '@core/repositories/refresh-token.repository.interface';
 import { PrismaService } from '@infrastructure/database/prisma/prisma.service';
 import { ConfigService } from '@nestjs/config';
-import { RefreshToken as PrismaRefreshToken } from '@prisma/client';
+import { RefreshToken as PrismaRefreshToken } from '.prisma/client-default';
 import { BaseRepository } from './base.repository';
 import { UserId } from '@core/value-objects/user-id.vo';
 import { Token } from '@core/value-objects/token.vo';

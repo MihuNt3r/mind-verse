@@ -10,7 +10,7 @@ import {
   RolePermission as PrismaRolePermission,
   Role as PrismaRole,
   Permission as PrismaPermission,
-} from '@prisma/client';
+} from '.prisma/client-default';
 import { Email } from '@core/value-objects/email.vo';
 import { FirstName, LastName } from '@core/value-objects/name.vo';
 import { ResourceAction, ActionType } from '@core/value-objects/resource-action.vo';

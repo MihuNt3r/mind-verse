@@ -1,4 +1,4 @@
-import { PrismaClient } from '@prisma/client';
+import { PrismaClient } from '.prisma/client-default';
 import * as bcrypt from 'bcrypt';
 
 // Roles

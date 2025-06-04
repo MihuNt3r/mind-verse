@@ -7,6 +7,7 @@ export const OTP_REPOSITORY = Symbol('OtpRepository');
 export const EMAIL_VERIFICATION_REPOSITORY = Symbol('EmailVerificationRepository');
 export const PASSWORD_RESET_REPOSITORY = Symbol('PasswordResetRepository');
 export const FILE_REPOSITORY = Symbol('FileRepository');
+export const QUOTES_REPOSITORY = Symbol('QuoteRepository');
 
 // Service injection tokens
 export const THROTTLER_SERVICE = Symbol('ThrottlerService');

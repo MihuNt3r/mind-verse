@@ -2,7 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { Permission } from '@core/entities/permission.entity';
 import { IPermissionRepository } from '@core/repositories/permission.repository.interface';
 import { PrismaService } from '@infrastructure/database/prisma/prisma.service';
-import { Permission as PrismaPermission } from '@prisma/client';
+import { Permission as PrismaPermission } from '.prisma/client-default';
 import { ResourceAction, ActionType } from '@core/value-objects/resource-action.vo';
 import { BaseRepository } from './base.repository';
 

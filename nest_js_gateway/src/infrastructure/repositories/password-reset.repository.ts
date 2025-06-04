@@ -6,7 +6,7 @@ import { BaseRepository } from './base.repository';
 import { Email } from '@core/value-objects/email.vo';
 import { Token } from '@core/value-objects/token.vo';
 import { UserId } from '@core/value-objects/user-id.vo';
-import { PasswordReset as PrismaPasswordReset } from '@prisma/client';
+import { PasswordReset as PrismaPasswordReset } from '.prisma/client-default';
 
 @Injectable()
 export class PasswordResetRepository

@@ -5,7 +5,7 @@ import { PrismaService } from '@infrastructure/database/prisma/prisma.service';
 import { BaseRepository } from './base.repository';
 import { Email } from '@core/value-objects/email.vo';
 import { VerificationCode } from '@core/value-objects/verification-code.vo';
-import { EmailVerification as PrismaEmailVerification } from '@prisma/client';
+import { EmailVerification as PrismaEmailVerification } from '.prisma/client-default';
 
 @Injectable()
 export class EmailVerificationRepository
