@@ -1,0 +1,102 @@
+version: '3.8'
+
+services:
+  postgres:
+    image: postgres:14-alpine
+    container_name: nestjs-template-postgres
+    restart: always
+    ports:
+      - '5433:5432'
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: nestjs_template
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      - nestjs-network
+
+  mailhog:
+    image: mailhog/mailhog
+    container_name: nestjs-template-mailhog
+    restart: always
+    ports:
+      - '1025:1025' # SMTP server
+      - '8025:8025' # Web UI
+    networks:
+      - nestjs-network
+
+  minio:
+    image: minio/minio:latest
+    container_name: nestjs-template-minio
+    restart: always
+    ports:
+      - '9000:9000'
+      - '9001:9001'
+    environment:
+      MINIO_ROOT_USER: minioadmin
+      MINIO_ROOT_PASSWORD: minioadmin
+    volumes:
+      - minio_data:/data
+    command: server --console-address ":9001" /data
+    networks:
+      - nestjs-network
+
+  createbuckets:
+    image: minio/mc
+    container_name: nestjs-template-createbuckets
+    depends_on:
+      - minio
+    entrypoint: >
+      /bin/sh -c "
+      sleep 5;
+      /usr/bin/mc config host add myminio http://minio:9000 minioadmin minioadmin;
+      /usr/bin/mc mb myminio/public;
+      /usr/bin/mc mb myminio/private;
+      /usr/bin/mc anonymous set download myminio/public;
+      exit 0;
+      "
+    networks:
+      - nestjs-network
+
+  # Uncomment if you want to run the app in docker
+  # api:
+  #   build:
+  #     context: .
+  #     dockerfile: Dockerfile
+  #   container_name: nestjs-template-api
+  #   restart: always
+  #   ports:
+  #     - "3000:3000"
+  #   depends_on:
+  #     - postgres
+  #     - mailhog
+  #     - minio
+  #   environment:
+  #     - NODE_ENV=development
+  #     - DATABASE_URL=postgresql://postgres:postgres@postgres:5432/nestjs_template?schema=public
+  #     - SMTP_HOST=mailhog
+  #     - SMTP_PORT=1025
+  #     - SMTP_USER=
+  #     - SMTP_PASSWORD=
+  #     - SMTP_FROM=noreply@example.com
+  #     - SMTP_SECURE=false
+  #     - STORAGE_DRIVER=minio
+  #     - MINIO_ENDPOINT=minio
+  #     - MINIO_PORT=9000
+  #     - MINIO_ACCESS_KEY=minioadmin
+  #     - MINIO_SECRET_KEY=minioadmin
+  #     - MINIO_USE_SSL=false
+  #     - MINIO_PUBLIC_BUCKET=public
+  #     - MINIO_PRIVATE_BUCKET=private
+  #     - FILE_STORAGE_PUBLIC_URL=http://localhost:9000/public
+  #   networks:
+  #     - nestjs-network
+
+volumes:
+  postgres_data:
+  minio_data:
+
+networks:
+  nestjs-network:
+    driver: bridge

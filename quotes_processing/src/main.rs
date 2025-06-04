@@ -38,8 +38,8 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
 
     let client = Client::new();
     // fetch quotes one by one
-    let quotes: Vec<Quote> = sqlx::query_as::<_, Quote>(
-        "SELECT id, quote, category, author FROM csv_imported_quotes WHERE quote IS NOT NULL OFFSET 8536",
+    let quotes: Vec<Quote> = sqlx::query_as::<_, Quote>(//433281
+        "SELECT id, quote, category, author FROM csv_imported_quotes WHERE quote IS NOT NULL OFFSET 433281",
     )
         .fetch_all(&pool)
         .await?;
