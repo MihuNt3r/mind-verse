@@ -9,18 +9,25 @@ import {
 } from '../../test/mocks/repositories.factory';
 
 // Tokens
-import { USER_REPOSITORY, ROLE_REPOSITORY } from '@shared/constants/tokens';
+// import { USER_REPOSITORY, ROLE_REPOSITORY } from '@shared/constants/tokens';
+import { USER_REPOSITORY, ROLE_REPOSITORY } from '../../shared/constants/tokens';
 
 // Fixtures
 import { userFixtures } from '../../test/fixtures/user.fixtures';
 
 // Exceptions
+// import {
+//   EntityNotFoundException,
+//   EntityAlreadyExistsException,
+//   AuthenticationException,
+//   InvalidValueObjectException,
+// } from '@core/exceptions/domain-exceptions';
 import {
-  EntityNotFoundException,
+    EntityNotFoundException,
   EntityAlreadyExistsException,
   AuthenticationException,
   InvalidValueObjectException,
-} from '@core/exceptions/domain-exceptions';
+  } from '../exceptions/domain-exceptions';
 
 // Mock bcrypt
 jest.mock('bcrypt', () => ({

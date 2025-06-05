@@ -16,6 +16,7 @@ import { UserModule } from '@presentation/modules/user/user.module';
 import { RoleModule } from '@presentation/modules/role/role.module';
 import { AdminModule } from '@presentation/modules/admin/admin.module';
 import { StorageModule } from '@presentation/modules/storage/storage.module';
+import { QuotesModule } from '@presentation/modules/quote/quote.module';
 
 // Global providers
 import { LoggingInterceptor } from '@presentation/interceptors/logging.interceptor';
@@ -57,6 +58,7 @@ import configuration from '@infrastructure/config/configuration';
     RoleModule,
     AdminModule,
     StorageModule,
+    QuotesModule,
   ],
   controllers: [HealthController],
   providers: [
