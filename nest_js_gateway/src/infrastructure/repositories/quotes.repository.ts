@@ -8,6 +8,7 @@ export class QuotesRepository implements IQuotesRepository {
   constructor(private readonly prisma: PrismaQuotesService) {}
 
   async findMatchingQuote(emotion: string): Promise<string> {
+    console.log({ emotion });
     const result = await this.prisma.$queryRaw<Quote[]>`
       SELECT *
       FROM processed_quotes
@@ -18,6 +19,10 @@ export class QuotesRepository implements IQuotesRepository {
       ORDER BY RANDOM()
       LIMIT 1;
     `;
+
+    console.log({ result });
+
+    console.log(result[0].emotion_scores);
 
     if (!result || result.length === 0) {
       throw new NotFoundException('No matching quote found.');

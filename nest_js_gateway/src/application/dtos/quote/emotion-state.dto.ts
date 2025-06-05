@@ -4,5 +4,5 @@ class EmotionScore {
 }
 
 export class EmotionStateDto {
-  emotions: Array<EmotionScore>;
+  results: Array<EmotionScore>;
 }

@@ -12,7 +12,7 @@ export class QuotesService {
 
   //It may be redundant to create separate service. This logic can be handled in Query Handler
   async findRelevantQuote(emotionsState: EmotionStateDto): Promise<string> {
-    const { label } = emotionsState.emotions.reduce((prev, curr) =>
+    const { label } = emotionsState.results.reduce((prev, curr) =>
       curr.score > prev.score ? curr : prev,
     );
 

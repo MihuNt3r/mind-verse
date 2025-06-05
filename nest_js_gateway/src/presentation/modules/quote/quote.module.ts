@@ -10,19 +10,25 @@ import { QuotesService } from '@core/services/quotes.service';
 
 import { GetRelevantQuoteQueryHandler } from '@application/queries/quote/get-relevant-quote.query';
 import { PrismaModule } from '@infrastructure/database/prisma/prisma.module';
+import { EmotionsService } from '@core/services/emotions.service';
+import { HttpModule } from '@nestjs/axios';
 
 const queryHandlers = [GetRelevantQuoteQueryHandler];
 
 const commandHandlers = [];
 
 @Module({
-  imports: [CqrsModule, PrismaModule],
+  imports: [CqrsModule, PrismaModule, HttpModule],
   controllers: [QuoteController],
   providers: [
     // Services
     {
       provide: QuotesService,
       useClass: QuotesService,
+    },
+    {
+      provide: EmotionsService,
+      useClass: EmotionsService,
     },
 
     // Repository tokens

@@ -1,7 +1,7 @@
 import { IQuery, IQueryHandler, QueryHandler } from '@nestjs/cqrs';
 import { QuotesService } from '@core/services/quotes.service';
 import { JournalEntryDto } from '@application/dtos/quote/journal-entry.dto';
-import { EmotionStateDto } from '@application/dtos/quote/emotion-state.dto';
+import { EmotionsService } from '@core/services/emotions.service';
 
 export class GetRelevantQuoteQuery implements IQuery {
   constructor(public readonly journalEntry: JournalEntryDto) {}
@@ -9,17 +9,21 @@ export class GetRelevantQuoteQuery implements IQuery {
 
 @QueryHandler(GetRelevantQuoteQuery)
 export class GetRelevantQuoteQueryHandler implements IQueryHandler<GetRelevantQuoteQuery> {
-  constructor(private readonly quotesService: QuotesService) {}
+  constructor(
+    private readonly quotesService: QuotesService,
+    private readonly emotionsService: EmotionsService,
+  ) {}
 
-  async execute(_query: GetRelevantQuoteQuery): Promise<string> {
-    // const { journalEntry } = query;
-    // const { text }= journalEntry;
+  async execute(query: GetRelevantQuoteQuery): Promise<string> {
+    const { journalEntry } = query;
+    const { text } = journalEntry;
+
+    console.log(`Text of entry: ${text}`);
     // Call api of Python microservice to classify journal entry
-    // const emotionsState = fetch('http://localhost:8080/classify')
+    const emotionsState = await this.emotionsService.classifyText(text);
 
-    const emotionsState = { emotions: [{ label: 'love', score: 0.2 }] } as EmotionStateDto;
-    const quote = await this.quotesService.findRelevantQuote(emotionsState);
+    console.log(`Emotions state:`, emotionsState);
 
-    return quote;
+    return await this.quotesService.findRelevantQuote(emotionsState);
   }
 }
